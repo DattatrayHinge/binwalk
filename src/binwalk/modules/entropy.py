@@ -99,10 +99,11 @@ class Entropy(Module):
         if self.use_zlib:
             self.algorithm = self.gzip
         else:
-            if 'numpy' in sys.modules:
-                self.algorithm = self.shannon_numpy
-            else:
-                self.algorithm = self.shannon
+            # if 'numpy' in sys.modules:
+            #     self.algorithm = self.shannon_numpy
+            # else:
+            #     self.algorithm = self.shannon
+            self.algorithm = self.shannon
 
         # Get a list of all other module's results to mark on the entropy graph
         for (module, obj) in iterator(self.modules):
