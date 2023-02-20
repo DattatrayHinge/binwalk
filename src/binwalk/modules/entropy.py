@@ -99,10 +99,14 @@ class Entropy(Module):
         if self.use_zlib:
             self.algorithm = self.gzip
         else:
-            if 'numpy' in sys.modules:
-                self.algorithm = self.shannon_numpy
-            else:
-                self.algorithm = self.shannon
+            # Below block is skiped for IoTAuditor,
+            # this was creating problem when binwalk called back to back 
+            # multiple times 
+            # if 'numpy' in sys.modules:
+            #     self.algorithm = self.shannon_numpy
+            # else:
+            #     self.algorithm = self.shannon
+            self.algorithm = self.shannon
 
         # Get a list of all other module's results to mark on the entropy graph
         for (module, obj) in iterator(self.modules):
